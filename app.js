@@ -13,8 +13,11 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const User = require('./models/user');
 const userRoutes = require('./routes/users');
+require('dotenv').config();
 
-mongoose.connect('mongodb://127.0.0.1:27017/yelp-camp', { useNewUrlParser: true, useUnifiedTopology: true })
+const uri = process.env.MONGODB_URI;
+
+mongoose.connect(uri)
     .then(() => {
         console.log("Mongo Connection Open");
     })
