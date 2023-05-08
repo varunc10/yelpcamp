@@ -33,15 +33,17 @@ router.get('/login', (req, res) => {
 
 router.post('/login', passport.authenticate('local', { failureFlash: true, failureRedirect: '/login' }), (req, res) => {
     req.flash('success', 'Welcome Back');
+    const redirectUrl = req.session.returnTo || '/campgrounds';
     res.redirect('/campgrounds');
 })
 
-router.get('/logout', (req, res) => {
-    req.logout((err) => {
+router.get('/logout', (req, res, next) => {
+    // req.isAuthenticated = false;
+    req.logout(function (err) {
         if (err) {
-            console.log(err);
+            return next(err);
         }
-        req.flash('success', 'Successfully Logged Out');
+        req.flash('success', 'Goodbye!');
         res.redirect('/login');
     });
 });
