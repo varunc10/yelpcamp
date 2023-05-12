@@ -1,4 +1,8 @@
 <% layout('layouts/boilerplate')%>
+
+    <head>
+        <title>All Campgrounds</title>
+    </head>
     <h1>All Campgrounds</h1>
     <div>
         <a href="/campgrounds/new">Add a Campground</a>
@@ -23,7 +27,7 @@
                             </small>
                         </p>
                         <a class="btn btn-primary" href="/campgrounds/<%=campground._id%>">View <%=campground.title%>
-                                </a>
+                        </a>
                     </div>
                 </div>
             </div>
